@@ -1,7 +1,8 @@
 ---
 name: Craig
-role: Senior Frontend Engineer | Staff Frontend Engineer (Systems Architecture)
-skills: React, TypeScript, Next.js, Node.js, GraphQL, Temporal, Agentic AI
+role: Senior/Staff Full-Stack Engineer · React · TypeScript · Next.js · Node · AI-Accelerated
+skills: React, TypeScript, Next.js, Node.js, GraphQL, AI-Native, Open Source
+portfolio: https://craig-o-curtis.github.io/
 menu:
   - label: Career
     file: career/index.md
@@ -11,6 +12,8 @@ menu:
     file: organizations/index.md
   - label: Projects
     file: projects/index.md
+  - label: Certifications
+    file: certifications/index.md
   - label: Contact
     file: contact.md
   - label: Download CV
@@ -19,8 +22,6 @@ menu:
 
 <!-- Skills badges -->
 
-## Senior Frontend Engineer | Global Infrastructure & Agentic AI Orchestration
+## Senior/Staff Full-Stack Engineer · React · TypeScript · Next.js · Node · AI-Native
 
-Engineering high-availability platforms where data integrity is mission-critical. From U.S. DoD intelligence to global DDI infrastructure (DNS/DHCP/IPAM), I specialize in bridging complex backends with intuitive, resilient user experiences.
-
-Focus: Staff-level architectural governance, **Agentic AI orchestration**, and multi-tenant localization. Committed to "Code-As-Craft" standards, WCAG 2.0 AAA accessibility, and scaling precision through autonomous workflows across global distributed teams.
+Senior frontend-leaning full-stack engineer, 10+ years in React, TypeScript, and Next.js. I build AI-native and in the open: six published npm packages of agent-ready developer tooling. I fix root causes, and I care about the parts that make software last — reusable architecture, accessibility, and real test coverage — across travel, network infrastructure, and EdTech. U.S. citizen and Finland permanent resident; former U.S. DoD Mandarin linguist (DLPT 3/3).

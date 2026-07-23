@@ -24,6 +24,7 @@ export interface HumanManifest extends Page {
   name: string;
   role: string;
   skills?: string[]; // parsed from frontmatter comma-separated list
+  portfolio?: string;
 }
 
 export interface JSONEntry {

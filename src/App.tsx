@@ -84,6 +84,7 @@ export function App({ name }: AppProps) {
   const [contactInfo, setContactInfo] = useState<{
     email?: string;
     linkedin?: string;
+    portfolio?: string;
   }>({});
 
   useEffect(() => {
@@ -118,14 +119,26 @@ export function App({ name }: AppProps) {
       const content = currentPage.content;
       const emailMatch = grabEmailPattern(content);
       const linkedinMatch = grabLinkedInPattern(content);
-      setContactInfo({
+      setContactInfo((prev) => ({
+        ...prev,
         email: emailMatch ? emailMatch[0] : undefined,
         linkedin: linkedinMatch ? linkedinMatch[0] : undefined,
-      });
+      }));
     } else {
-      setContactInfo({});
+      setContactInfo((prev) => ({
+        ...prev,
+        email: undefined,
+        linkedin: undefined,
+      }));
     }
   }, [currentPage, isContactPage]);
+
+  useEffect(() => {
+    setContactInfo((prev) => ({
+      ...prev,
+      portfolio: human?.portfolio,
+    }));
+  }, [human]);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -151,6 +164,7 @@ export function App({ name }: AppProps) {
     onPrimaryAction: handleSelect,
     onContactEmail: handleContactEmail,
     onContactLinkedIn: handleContactLinkedIn,
+    onContactPortfolio: handleContactPortfolio,
   });
 
   async function handleSelect(item: { value: string }) {
@@ -202,6 +216,14 @@ export function App({ name }: AppProps) {
     }
 
     open(contactInfo.linkedin);
+  }
+
+  function handleContactPortfolio() {
+    if (!contactInfo.portfolio) {
+      return;
+    }
+
+    open(contactInfo.portfolio);
   }
 
   const navigationHint = computeNavigationHint(history);
@@ -287,7 +309,10 @@ export function App({ name }: AppProps) {
                       hints={{
                         ...(contactInfo.email && { m: "Send email" }),
                         ...(contactInfo.linkedin && {
-                          p: "Open LinkedIn profile",
+                          l: "Open LinkedIn profile",
+                        }),
+                        ...(contactInfo.portfolio && {
+                          p: "Open portfolio",
                         }),
                       }}
                     />

@@ -1,15 +1,15 @@
 ---
 type: "career"
 title: "ChinaNetCloud"
-subtitle: "Technical Knowledge & Systems Consultant | 2014.01 - 2014.09"
+subtitle: "Technical Knowledge & Systems Consultant (Cloud Operations) | 2014.01 - 2014.09"
 ---
 
 # ChinaNetCloud
 
-_Technical Knowledge & Systems Consultant | 2014.01 - 2014.09_
+_Technical Knowledge & Systems Consultant (Cloud Operations) | 2014.01 - 2014.09_
 
-- Standardized internal engineering wikis and SOPs to establish a "Single Source of Truth."
-- Conducted high-level bilingual (EN/CN) localization of high-stakes cloud computing procedures.
-- Enhanced internal toolsets and engineer-facing dashboards for operational efficiency.
-- Tech stack: Cloud Managed Services, Internal Admin Tools, SOP Documentation.
-- Skills: Knowledge Management, SOP Development, Cloud Operations, Technical L10n, Process Optimization.
+- At China's leading cloud managed-services provider, standardized the engineering documentation and procedures behind cloud-infrastructure and server operations for a global engineering team.
+- Built and standardized internal engineering wikis and runbooks for cloud-infrastructure and server-management procedures.
+- Advised on the engineer-facing internal tooling and dashboards, and produced technical onboarding materials.
+- Tech stack: cloud managed services, internal admin tools, SOP documentation.
+- Skills: Knowledge management, cloud-ops documentation, technical localization.

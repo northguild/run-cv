@@ -65,7 +65,10 @@ export function resolveSections(
         sectionTitle = (indexData.title as string) || section;
 
         if (indexData.menu && Array.isArray(indexData.menu)) {
-          filesToProcess = indexData.menu.map((item: MenuItem) => item.file);
+          const files = indexData.menu
+            .map((item: MenuItem) => item.file)
+            .filter(Boolean) as string[];
+          filesToProcess = files.length > 0 ? files : ["index.md"];
         } else {
           filesToProcess = indexFile.split("\n").filter(Boolean);
         }

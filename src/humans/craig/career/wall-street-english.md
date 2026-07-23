@@ -1,15 +1,14 @@
 ---
 type: "career"
 title: "Wall Street English China"
-subtitle: "Foreign Trainer & UX Product Advisor | 2010.09 - 201.05"
+subtitle: "Foreign Trainer & UX Advisor | 2010.09 - 2013.05"
 ---
 
 # Wall Street English China
 
-_Foreign Trainer & UX Product Advisor | 2010.09 - 2013.05_
+_Foreign Trainer & UX Advisor | 2010.09 - 2013.05_
 
-- Advised CTO on UX for student-facing apps, developing interactive high-fidelity mockups.
-- Provided executive coaching for C-Suite/UHNW individuals in China’s top business ecosystem.
-- Early adopter of real-time EdTech tools, providing feedback on instructional design performance.
-- Tech stack: Mockup Tools, EdTech Systems, CRM.
-- Skills: UX Consulting, Executive Communication, EdTech Strategy, Stakeholder Management, Strategic Pedagogy.
+- Business-English trainer for executives and high-net-worth clients (Top Foreign Consultant, 2011), with a product/UX side-thread.
+- Built and integrated interactive learning modules (via the Minted Sky venture) into the curriculum, improving engagement.
+- Produced UX mockups and product feedback for the corporate-training product line.
+- Skills: Training, product/UX input, stakeholder management.

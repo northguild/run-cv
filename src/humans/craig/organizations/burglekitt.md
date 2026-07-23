@@ -1,17 +1,13 @@
 ---
 type: "organization"
-title: "Burglekitt (Engineering Collective)"
-subtitle: "Co-Founder & Core Architect | 2024.01 - Present"
+title: "burglekitt"
+subtitle: "Open-Source Engineering | 2026.02 - Present"
 ---
 
-# Burglekitt (Engineering Collective)
+# burglekitt
 
-_Co-Founder & Core Architect | 2024.01 - Present_
+_Open-Source Engineering | 2026.02 - Present_
 
-- Co-founded an independent GitHub organization focused on high-utility engineering tooling.
-- Orchestrating a suite of Node.js-driven "work-utils" distributed via `npx` to streamline the modern developer experience (DX).
-- Architecting modular, performance-first frontend systems and CLI environments.
-- Tech stack: Node.js, NX Monorepos, TypeScript, Playwright, GitHub Actions.
-- Focus: Developer Experience (DX), CLI Tooling, Automation, Software Craftsmanship.
-
-- **Note:** This terminal experience is powered by the Burglekitt ecosystem.
+- Build and publish developer tooling in the open, distributed via npm/npx. See Projects for the packages.
+- Tech stack: Node.js, TypeScript, Nx monorepos, Playwright, GitHub Actions.
+- Focus: developer experience, CLI tooling, AI-native workflows.

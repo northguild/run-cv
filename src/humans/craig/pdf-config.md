@@ -5,7 +5,8 @@ sections:
   - career
   - education
   - organizations
-header: "Craig Curtis - Senior Frontend Engineer | Staff Frontend Engineer (Systems Architecture)"
+  - certifications
+header: "Craig Curtis - Senior/Staff Full-Stack Engineer · React · TypeScript · Next.js · Node · AI-Native"
 footer: "We built this PDF! burglekitt/run-cv"
 ---
 
