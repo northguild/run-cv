@@ -1,15 +1,11 @@
 ---
 type: "organization"
-title: "Suomen Paluumuuttajayhdistys ry (Finnish Remigration Association)"
-subtitle: "Chairman (Puheenjohtaja) | 2024.01 - Present"
+title: "Suomen Paluumuuttajayhdistys ry (Finland Remigrants Association)"
+subtitle: "Founding Chair (Puheenjohtaja) | 2025 - Present"
 ---
 
-# Suomen Paluumuuttajayhdistys ry (Finnish Remigration Association)
+# Suomen Paluumuuttajayhdistys ry (Finland Remigrants Association)
 
-_Chairman (Puheenjohtaja) | 2024.01 - Present_
+_Founding Chair (Puheenjohtaja) | 2025 - Present_
 
-- Lead digital strategy and collaborate on advocacy for the Finnish remigration community.
-- Orchestrate high-level community-building initiatives to anchor professional and civic life in Finland.
-- Manage stakeholder relationships to influence policy and support the Finnish remigration ecosystem.
-- Ensure organizational reliability and long-term impact through strategic digital roadmap management.
-- Skills: Digital Strategy, Executive Leadership, Civic Advocacy, Stakeholder Management.
+- Built and maintain the community's digital ecosystem; co-lead advocacy with Members of Parliament and national organizations.

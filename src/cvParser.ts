@@ -43,6 +43,7 @@ export const getHuman = async (id: string): Promise<HumanManifest> => {
       name: data.name as string,
       role: data.role as string,
       skills,
+      portfolio: data.portfolio as string | undefined,
       menu: (data.menu as MenuItem[]) || [],
       content: content,
       dir: humanDir,

@@ -1,15 +1,14 @@
 ---
 type: "career"
 title: "Powers Translation International"
-subtitle: "Lead Technical Localization Specialist | 2011.02 - 2013.02"
+subtitle: "Technical Localization Specialist (Mandarin/English) | 2011.02 - 2013.02"
 ---
 
 # Powers Translation International
 
-_Lead Technical Localization Specialist | 2011.02 - 2013.02_
+_Technical Localization Specialist (Mandarin/English) | 2011.02 - 2013.02_
 
-- Initiated technical localization of 2M+ words for IT, Online Gaming, and Automotive sectors.
-- Oversaw quality benchmarks and technical glossaries for large-scale engineering tracks.
-- Consulted on the globalization of Chinese digital products for high-impact Western market entry.
-- Tech stack: CAT Tools, CMS, Technical Lexicon Management.
-- Skills: Large-Scale L10n, Terminology Management, Content Engineering, Globalization, Quality QA.
+- Technical localization across the IT, online-gaming, and automotive sectors.
+- Localized 2M+ words of technical content and led the English track for large translation teams, building glossaries and quality benchmarks for consistency at scale.
+- Tech stack: CAT tools, CMS, terminology management.
+- Skills: Large-scale localization, terminology, globalization, QA.

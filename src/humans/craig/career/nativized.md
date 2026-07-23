@@ -8,8 +8,6 @@ subtitle: "Founder & Localization Project Lead | 2011.06 - 2012.01"
 
 _Founder & Localization Project Lead | 2011.06 - 2012.01_
 
-- Founded a specialized platform for technical and marketing transitions between West/China.
-- Managed a distributed team of 5 bilingual translators for complex real estate developments.
-- Implemented rigorous QA standards for technical specifications in the international sector.
-- Tech stack: Project Management Tools, Localization Frameworks, CMS.
-- Skills: Entrepreneurial Leadership, Quality Assurance, Workflow Orchestration, Cross-Cultural Marketing, Technical Liaison.
+- Founded and ran a bootstrapped EN–ZH localization agency serving the real-estate sector.
+- Managed a distributed team of 5 bilingual translators and owned the QA framework and client relationships end to end.
+- Skills: Entrepreneurship, team leadership, QA, client management.

@@ -8,9 +8,8 @@ subtitle: "Technical Instructor (Frontend & Global Exams) | 2012.09 - 2016.02"
 
 _Technical Instructor (Frontend & Global Exams) | 2012.09 - 2016.02_
 
-- Created digital platforms for a tech-forward curriculum while leading high-level instruction.
-- Created the "Intro to Web Development" track, moving students to professional-grade implementation.
-- Founded CoderDojoXL Shanghai to bridge local students with production-grade industry standards.
-- Acted as a Mandarin Technical Liaison between administration, faculty, and technical vendors.
-- Tech stack: JavaScript, HTML5, CSS3, PHP, MintedSky Platform, Technical Translation.
-- Skills: Curriculum Architecture, Technical Mentorship, Platform Engineering, Bilingual Liaison, Community Building.
+- Created and taught the Intro to Web Development track and prepared students for TOEFL/IELTS and admission to top global universities.
+- Took students from zero to production-grade HTML, CSS, and JavaScript, and built/maintained the learning platforms.
+- Founded CoderDojoXL Shanghai, a coding community for university students.
+- Tech stack: JavaScript, HTML5, CSS3, PHP, MintedSky platform.
+- Skills: Curriculum design, technical mentorship, platform engineering, bilingual liaison.

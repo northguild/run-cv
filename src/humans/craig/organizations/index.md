@@ -1,9 +1,9 @@
 ---
 title: "Organizations"
 menu:
-  - label: Burglekitt (Engineering Collective)
+  - label: burglekitt — Open-Source Engineering
     file: burglekitt.md
-  - label: SPry (Finnish Remigration Association)
+  - label: Suomen Paluumuuttajayhdistys ry (Finland Remigrants Association)
     file: spry.md
   - label: Kolunsaran Sukuseura ry (Kolunsarka Family Association)
     file: ksry.md
@@ -11,6 +11,6 @@ menu:
     file: coderdojo.md
 ---
 
-# VOLUNTEER EXPERIENCE
+# ORGANIZATIONS
 
-Select a role to view detailed mission logs.
+Select an organization to view details.

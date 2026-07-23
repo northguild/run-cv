@@ -4,6 +4,7 @@ import type { HighlightedItem } from "../types";
 interface ContactInfo {
   email?: string;
   linkedin?: string;
+  portfolio?: string;
 }
 
 interface UseAppKeyboardOptions {
@@ -18,6 +19,7 @@ interface UseAppKeyboardOptions {
   onPrimaryAction: (item: HighlightedItem) => void;
   onContactEmail: () => void;
   onContactLinkedIn: () => void;
+  onContactPortfolio: () => void;
 }
 
 export function useAppKeyboard({
@@ -32,6 +34,7 @@ export function useAppKeyboard({
   onPrimaryAction,
   onContactEmail,
   onContactLinkedIn,
+  onContactPortfolio,
 }: UseAppKeyboardOptions): void {
   useInput((input, key) => {
     if (key.escape || key.leftArrow || (input === "b" && canGoBack)) {
@@ -50,8 +53,11 @@ export function useAppKeyboard({
       if (input === "m" && contactInfo.email) {
         onContactEmail();
       }
-      if (input === "p" && contactInfo.linkedin) {
+      if (input === "l" && contactInfo.linkedin) {
         onContactLinkedIn();
+      }
+      if (input === "p" && contactInfo.portfolio) {
+        onContactPortfolio();
       }
       return;
     }
