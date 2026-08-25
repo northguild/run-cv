@@ -5,7 +5,7 @@ sections:
   - career
   - volunteer
 header: "Baldur Páll Hólmgeirsson  - Senior Frontend Engineer"
-footer: "We built this PDF! burglekitt/run-cv"
+footer: "We built this PDF! @northguild/run-cv"
 ---
 
 # PDF Generation Rules

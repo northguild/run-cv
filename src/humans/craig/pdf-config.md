@@ -7,7 +7,7 @@ sections:
   - organizations
   - certifications
 header: "Craig Curtis - Senior/Staff Full-Stack Engineer · React · TypeScript · Next.js · Node · AI-Native"
-footer: "We built this PDF! burglekitt/run-cv"
+footer: "We built this PDF! @northguild/run-cv"
 ---
 
 # PDF Generation Rules

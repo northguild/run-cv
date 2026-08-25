@@ -34,13 +34,13 @@ describe("menu actions", () => {
 
   it("resolves URL menu item to open-url action", () => {
     const action = resolveMenuAction(
-      { label: "Worktree", url: "https://github.com/burglekitt/worktree" },
+      { label: "Worktree", url: "https://github.com/northguild/worktree" },
       "Craig",
     );
 
     expect(action).toEqual({
       type: "open-url",
-      url: "https://github.com/burglekitt/worktree",
+      url: "https://github.com/northguild/worktree",
     });
   });
 
@@ -72,13 +72,13 @@ describe("menu actions", () => {
     const menu: MenuItem[] = [
       { label: "Career", file: "career/index.md" },
       { label: "Terminal", theme: "terminal" },
-      { label: "Worktree", url: "https://github.com/burglekitt/worktree" },
+      { label: "Worktree", url: "https://github.com/northguild/worktree" },
     ];
 
     expect(getMenuItemValue(menu[0])).toBe("career/index.md");
     expect(getMenuItemValue(menu[1])).toBe("terminal");
     expect(getMenuItemValue(menu[2])).toBe(
-      "https://github.com/burglekitt/worktree",
+      "https://github.com/northguild/worktree",
     );
 
     expect(getMenuSelectItems(menu)).toEqual([
@@ -86,13 +86,13 @@ describe("menu actions", () => {
       { label: "Terminal", value: "terminal" },
       {
         label: "Worktree",
-        value: "https://github.com/burglekitt/worktree",
+        value: "https://github.com/northguild/worktree",
       },
     ]);
 
     expect(findMenuItemByValue(menu, "terminal")?.label).toBe("Terminal");
     expect(
-      findMenuItemIndexByValue(menu, "https://github.com/burglekitt/worktree"),
+      findMenuItemIndexByValue(menu, "https://github.com/northguild/worktree"),
     ).toBe(2);
   });
 });

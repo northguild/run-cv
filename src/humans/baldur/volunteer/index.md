@@ -1,8 +1,8 @@
 ---
 title: "Volunteer Experience"
 menu:
-  - label: Burglekitt
-    file: burglekitt.md
+  - label: NorthGuild
+    file: northguild.md
   - label: The Pigeon International Film Festival
     file: piff.md
 ---

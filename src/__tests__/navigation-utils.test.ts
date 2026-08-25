@@ -116,7 +116,7 @@ describe("drill-in guard", () => {
       file: "index.md",
       content: "",
       menu: [
-        { label: "Worktree", url: "https://github.com/burglekitt/worktree" },
+        { label: "Worktree", url: "https://github.com/northguild/worktree" },
       ],
     };
     const highlighted = computeHighlightedItem(projectsPage, {
@@ -125,7 +125,7 @@ describe("drill-in guard", () => {
 
     expect(highlighted).toEqual({
       label: "Worktree",
-      value: "https://github.com/burglekitt/worktree",
+      value: "https://github.com/northguild/worktree",
     });
     expect(canDrillIn(projectsPage, highlighted)).toBe(true);
   });

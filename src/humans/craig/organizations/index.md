@@ -1,8 +1,8 @@
 ---
 title: "Organizations"
 menu:
-  - label: burglekitt — Open-Source Engineering
-    file: burglekitt.md
+  - label: NorthGuild Open-Source Engineering
+    file: northguild.md
   - label: Suomen Paluumuuttajayhdistys ry (Finland Remigrants Association)
     file: spry.md
   - label: Kolunsaran Sukuseura ry (Kolunsarka Family Association)
