@@ -52,11 +52,11 @@ describe("menu action executor", () => {
 
     await runExecutor({
       type: "open-url",
-      url: "https://github.com/burglekitt/worktree",
+      url: "https://github.com/northguild/worktree",
     });
 
     expect(openSpy).toHaveBeenCalledWith(
-      "https://github.com/burglekitt/worktree",
+      "https://github.com/northguild/worktree",
     );
   });
 

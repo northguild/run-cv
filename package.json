@@ -10,7 +10,6 @@
     "type": "git",
     "url": "https://github.com/burglekitt/run-cv"
   },
-  "homepage": "https://burglekitt.github.io/run-cv",
   "files": [
     "dist",
     "README.md"

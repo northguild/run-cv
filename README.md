@@ -1,10 +1,20 @@
 # run-cv
 
+> ## ⚠️ Deprecation Notice
+>
+> This package and repository have moved. **`run-cv` is now maintained under the
+> [northguild](https://github.com/northguild) organization.**
+>
+> - **New repository:** https://github.com/northguild/run-cv
+> - **Installation / usage:** unchanged — `npx run-cv <name>` still works as before.
+>
+> This `burglekitt/run-cv` repository and its published package are deprecated and
+> will receive no further updates. Please update any bookmarks, forks, and CI
+> references to point at **`northguild/run-cv`**.
+
 A mainframe-inspired terminal CV viewer built with Node.js, React, and Ink.
 
 ![Terminal UI](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExM3R5eXJ5eXJ5eXJ5eXJ5eXJ5eXJ5eXJ5eXJ5eXJ5eXJ5eXJ5eSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3o7TKSjRrfIPjeiVyM/giphy.gif)
-
-[View Landing Page](https://burglekitt.github.io/run-cv/)
 
 ## Features
 

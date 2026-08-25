@@ -2,9 +2,9 @@
 title: "Projects"
 menu:
   - label: Worktree
-    url: https://github.com/burglekitt/worktree
+    url: https://github.com/northguild/worktree
   - label: GMT (Coming soon)
-    url: https://github.com/burglekitt/gmt
+    url: https://github.com/northguild/gmt
 ---
 
 # Projects

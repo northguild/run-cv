@@ -1,10 +1,10 @@
 ---
 type: "organization"
-title: "burglekitt"
+title: "NorthGuild"
 subtitle: "Open-Source Engineering | 2026.02 - Present"
 ---
 
-# burglekitt
+# NorthGuild
 
 _Open-Source Engineering | 2026.02 - Present_
 
