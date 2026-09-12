@@ -16,7 +16,7 @@
   ],
   "packageManager": "pnpm@10.0.0",
   "scripts": {
-    "build": "biome check && tsup src/cli.tsx --format esm --clean && pnpm run copy:humans && pnpm run copy:pdfs && pnpm run build:pdfs",
+    "build": "biome check && tsup src/cli.tsx --format esm --clean && pnpm run copy:humans && pnpm run build:pdfs && pnpm run copy:pdfs",
     "build:ci": "biome check && tsup src/cli.tsx --format esm --clean && pnpm run copy:humans",
     "build:pdfs": "tsx scripts/pdf-gen/generate.ts --all",
     "predev": "pnpm run build:pdfs && pnpm run copy:pdfs",
@@ -24,13 +24,17 @@
     "test": "vitest run",
     "format": "biome format --write",
     "lint": "biome lint",
+    "check": "biome check",
     "lint:fix": "biome lint --write",
     "biome:all": "biome format --write && biome lint --write",
     "gen:pdf": "tsx scripts/pdf-gen/generate.ts",
     "copy:pdfs": "tsx scripts/copy-pdfs/copy-pdfs.ts",
     "copy:humans": "cp -r src/humans dist/",
     "gen:json": "tsx scripts/json-gen/generate.ts",
-    "prepublishOnly": "pnpm run build"
+    "prepublishOnly": "pnpm run build",
+    "build:web": "node scripts/run-cv-web/build.mjs",
+    "typecheck": "tsc --noEmit && tsc -p scripts/run-cv-web --noEmit",
+    "preview:web": "node scripts/run-cv-web/preview.mjs"
   },
   "keywords": [],
   "author": "Craig O. Curtis & Baldur Páll Hólmgeirsson",
@@ -56,11 +60,26 @@
     "@types/nodemailer": "^6.4.10",
     "@types/react": "^19.2.14",
     "@types/uuid": "^10.0.0",
+    "@xterm/addon-fit": "^0.11.0",
+    "@xterm/xterm": "^6.0.0",
+    "buffer": "^6.0.3",
+    "esbuild": "^0.28.2",
+    "events": "^3.3.0",
     "ink-testing-library": "^4.0.0",
+    "jsdom": "^27.4.0",
+    "memfs": "^4.76.0",
+    "path-browserify": "^1.0.1",
     "playwright-core": "^1.58.2",
+    "stream-browserify": "^3.0.0",
     "tsup": "^8.0.1",
     "tsx": "^4.7.1",
     "typescript": "^5.2.2",
+    "util": "^0.12.5",
     "vitest": "^4.0.18"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "esbuild"
+    ]
   }
 }

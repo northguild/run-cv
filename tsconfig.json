@@ -11,5 +11,6 @@
     "forceConsistentCasingInFileNames": true,
     "types": ["vitest/globals", "node"]
   },
-  "include": ["src/**/*", "scripts/**/*.ts"]
+  "include": ["src/**/*", "scripts/**/*.ts"],
+  "exclude": ["node_modules", "dist", "scripts/run-cv-web"]
 }

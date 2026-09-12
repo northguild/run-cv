@@ -10,6 +10,7 @@
       "**",
       "!!**/dist",
       "!!**/node_modules",
+      "!!docs/run-cv",
       "!!**/tmp",
       "!!package.json",
       "!!.npmignore",
@@ -48,5 +49,13 @@
         "organizeImports": "on"
       }
     }
-  }
+  },
+  "overrides": [
+    {
+      "includes": ["scripts/run-cv-web/**"],
+      "formatter": {
+        "lineWidth": 100
+      }
+    }
+  ]
 }

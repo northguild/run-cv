@@ -1,0 +1,23 @@
+{
+  // The builder carries its own tsconfig so the folder can be copied into
+  // another repo and type-check there without inheriting that repo's app
+  // settings. Keep it self-contained: no path aliases, no framework plugins.
+  "compilerOptions": {
+    "target": "ES2022",
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "types": ["node"],
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "noImplicitOverride": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true
+  },
+  "include": ["**/*.ts", "env.d.ts"],
+  "exclude": ["node_modules"]
+}

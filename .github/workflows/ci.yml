@@ -2,9 +2,9 @@ name: CI
 
 on:
   push:
-    branches: [main, feat/**, fix/**]
+    branches: [main, feat/**, fix/**, chore/**]
   pull_request:
-    branches: [main, feat/**, fix/**]
+    branches: [main, feat/**, fix/**, chore/**]
 
 jobs:
   test:
@@ -32,11 +32,21 @@ jobs:
           pnpm -v
           pnpm list --depth=0
 
+      # `biome check`, not `biome lint`: it also gates formatting and import
+      # order, which is what `build:ci` enforces further down. Running it here
+      # means a formatting break fails fast, under a step named for it.
       - name: Lint
-        run: pnpm run lint
+        run: pnpm run check
+
+      - name: Typecheck
+        run: pnpm run typecheck
 
       - name: Test
         run: pnpm run test
 
       - name: Build
         run: pnpm run build:ci
+
+      # Catches a broken shim or a bad basePath before it reaches Pages.
+      - name: Build the terminal
+        run: pnpm run build:web
