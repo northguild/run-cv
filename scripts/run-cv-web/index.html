@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex">
+    <title>__TITLE__</title>
+    <link rel="icon" href="data:,">
+    <!-- Absolute paths: served under __BASE_PATH__ on GitHub Pages, and some
+         static servers redirect index.html to the directory, which would break
+         relative URLs. -->
+    <link rel="stylesheet" href="__BASE_PATH__terminal.css">
+    <style>
+    html,
+    body {
+      height: 100%;
+      margin: 0;
+      overflow: hidden;
+      background: __BACKGROUND__;
+      color: __FOREGROUND__;
+      font:
+        12px / 1.4 Menlo,
+        "SF Mono",
+        SFMono-Regular,
+        Consolas,
+        "Liberation Mono",
+        monospace;
+    }
+
+    body {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Minimal padding: every pixel of height is another chance at a bigger font. */
+    #terminal {
+      flex: 1;
+      min-height: 0;
+      padding: 2px 4px;
+    }
+
+    .bar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 0.25rem 1rem;
+      margin: 0;
+      padding: 4px 10px;
+      border-top: 1px solid __ACCENT__;
+    }
+
+    a {
+      color: __FOREGROUND__;
+    }
+
+    :focus-visible {
+      outline: 2px solid #ffe066;
+      outline-offset: 2px;
+    }
+
+    .overlay,
+    .ended {
+      position: absolute;
+      inset: 0;
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      background: __BACKGROUND__;
+    }
+
+    body[data-state="ended"] .ended {
+      display: flex;
+    }
+
+    body[data-state="gate"] .gate {
+      display: flex;
+    }
+
+    /* The terminal is behind the gate and must not be reachable by Tab. */
+    body[data-state="gate"] #terminal {
+      visibility: hidden;
+    }
+
+    .gate form {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      justify-content: center;
+      gap: 0.5rem;
+      margin: 0;
+    }
+
+    .gate label {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0 0 0 0);
+      white-space: nowrap;
+    }
+
+    .gate .prompt {
+      color: __CURSOR__;
+    }
+
+    /* Borderless on black so it reads as part of the command line. */
+    .gate input {
+      min-width: 10ch;
+      padding: 0.15rem 0.25rem;
+      border: 0;
+      border-bottom: 1px solid __ACCENT__;
+      background: transparent;
+      color: __FOREGROUND__;
+      font: inherit;
+      caret-color: __CURSOR__;
+    }
+
+    .gate input:focus {
+      outline: none;
+      border-bottom-color: __CURSOR__;
+    }
+
+    .gate input::placeholder {
+      color: __FOREGROUND__;
+      opacity: 0.45;
+    }
+
+    .gate .note {
+      max-width: 46ch;
+      text-align: center;
+      opacity: 0.7;
+    }
+
+    .gate .prompt {
+      opacity: 0.75;
+    }
+
+    .ended p {
+      margin: 0;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    button {
+      min-width: 44px;
+      min-height: 44px;
+      padding: 0 1rem;
+      border: 1px solid #3a9a52;
+      border-radius: 6px;
+      background: #0c1a10;
+      color: __FOREGROUND__;
+      font: inherit;
+      cursor: pointer;
+    }
+    </style>
+  </head>
+  <body data-state="__BOOT_STATE__">
+    <header>
+      <h1
+        style="position: absolute; width: 1px; height: 1px; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap"
+      >
+        run-cv, running in your browser
+      </h1>
+    </header>
+    <main
+      id="terminal"
+      aria-label="run-cv terminal. Arrow keys move, right arrow opens, left arrow or Escape goes back, q quits, Tab leaves the terminal."
+    ></main>
+
+    <div class="gate overlay">
+      <form id="gate" autocomplete="off">
+        <label for="gate-input">Name</label>
+        <span class="prompt" aria-hidden="true">$</span>
+        <span>__PROMPT_LABEL__</span>
+        <input
+          id="gate-input"
+          name="human"
+          type="text"
+          placeholder="__PROMPT_PLACEHOLDER__"
+          autocapitalize="off"
+          autocorrect="off"
+          spellcheck="false"
+          enterkeyhint="go"
+        >
+        <button type="submit">[ RUN ]</button>
+      </form>
+      <p class="note">__PROMPT_NOTE__</p>
+      <noscript><p class="note">This terminal needs JavaScript.</p></noscript>
+    </div>
+
+    <div class="ended" role="status">
+      <p>Session ended</p>
+      <button id="restart" type="button">↻ Restart run-cv</button>
+    </div>
+
+    <footer class="bar">
+      <span>__HINT__</span>
+      <span
+        >Runs entirely in your browser ·
+        <a href="__BASE_PATH__THIRD_PARTY_LICENSES.txt" target="_blank" rel="noopener noreferrer"
+          >Licences</a
+        ></span
+      >
+    </footer>
+
+    <script type="module" src="__BASE_PATH__terminal.js"></script>
+  </body>
+</html>

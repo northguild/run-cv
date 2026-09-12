@@ -90,8 +90,14 @@
       </div>
 
       <div class="monitor-frame bg-black overflow-hidden rounded-sm relative">
+        <!--
+          Self-hosted: the CLI, bundled for the browser, with an in-memory
+          filesystem. `allow-same-origin` is load-bearing — without it the frame
+          gets an opaque origin and the terminal's own fetches are cross-origin,
+          which fails on the deploy and nowhere else.
+        -->
         <iframe
-          src="https://stackblitz.com/edit/run-cv?ctl=1&embed=1&file=index.js&hideExplorer=1&hideNavigation=1&hidePreview=1&terminalHeight=100&theme=dark&view=editor"
+          src="/run-cv/run-cv/index.html"
           style="
             width: 100%;
             height: 75vh;
@@ -100,6 +106,8 @@
             background: #000;
           "
           title="run-cv live terminal"
+          sandbox="allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox allow-forms"
+          referrerpolicy="no-referrer"
           allow="clipboard-read; clipboard-write"
           loading="lazy"
         ></iframe>
@@ -110,9 +118,8 @@
       >
         <div class="max-w-md">
           <p class="text-xs leading-relaxed text-[var(--mid-green)]">
-            Click
-            <span class="text-[var(--bright-green)]">"Run Project"</span> to
-            boot. Once initialized, execute: <br />
+            The terminal is live and runs entirely in your browser. Enter a name
+            at the prompt to pull that person's CV: <br />
             <code class="text-[var(--bright-green)] font-bold"
               >> npx run-cv &lt;name&gt;</code
             >
@@ -125,18 +132,6 @@
             target="_blank"
           >
             [ View Source ]
-          </a>
-          <a
-            href="https://www.linkedin.com/in/craigocurtis"
-            class="border border-[var(--dark-green)] px-4 py-2 text-[10px] uppercase hover:border-[var(--bright-green)] hover:text-[var(--bright-green)] transition-all"
-          >
-            [ Contact Architect 1 ]
-          </a>
-          <a
-            href="https://www.linkedin.com/in/baldur-p%C3%A1ll-h%C3%B3lmgeirsson-2a084b225"
-            class="border border-[var(--dark-green)] px-4 py-2 text-[10px] uppercase hover:border-[var(--bright-green)] hover:text-[var(--bright-green)] transition-all"
-          >
-            [ Contact Architect 2 ]
           </a>
         </div>
       </div>

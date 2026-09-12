@@ -231,10 +231,11 @@ async function generatePDF(
   const page = await browser.newPage();
   await page.setContent(fullHtml, { waitUntil: "networkidle" });
 
-  const pdfPath = path.resolve(
-    __dirname,
-    `../../dist/pdf/${name}-${theme}-cv.pdf`,
-  );
+  // public/ is the tracked source of truth for every PDF: `copy:pdfs` fans
+  // them out to dist/pdf/ for the npm tarball, and the web build copies them
+  // into each human's payload directory. Generation needs a browser, so the
+  // outputs are committed rather than rebuilt in CI.
+  const pdfPath = path.resolve(__dirname, `../../public/${name}-${theme}-cv.pdf`);
   fs.mkdirSync(path.dirname(pdfPath), { recursive: true });
 
   const baseTemplateStyle = `
