@@ -235,7 +235,10 @@ async function generatePDF(
   // them out to dist/pdf/ for the npm tarball, and the web build copies them
   // into each human's payload directory. Generation needs a browser, so the
   // outputs are committed rather than rebuilt in CI.
-  const pdfPath = path.resolve(__dirname, `../../public/${name}-${theme}-cv.pdf`);
+  const pdfPath = path.resolve(
+    __dirname,
+    `../../public/${name}-${theme}-cv.pdf`,
+  );
   fs.mkdirSync(path.dirname(pdfPath), { recursive: true });
 
   const baseTemplateStyle = `

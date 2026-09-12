@@ -1,8 +1,9 @@
 // An in-memory filesystem holding only the human's markdown, at the path
 // run-cv believes it was installed to.
-import { createFsFromVolume, Volume } from "memfs";
+
 import files from "virtual:run-cv-files";
 import config from "virtual:run-cv-web-config";
+import { createFsFromVolume, Volume } from "memfs";
 
 export type MemFs = ReturnType<typeof createFsFromVolume>;
 

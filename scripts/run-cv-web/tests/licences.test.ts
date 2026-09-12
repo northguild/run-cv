@@ -1,12 +1,12 @@
-import { describe, expect, it, vi } from "vitest";
 import type { Metafile } from "esbuild";
+import { describe, expect, it, vi } from "vitest";
 import {
   collectPackages,
-  owningPackage,
-  renderLicences,
   type ManifestReader,
   type OwnedPackage,
+  owningPackage,
   type PackageManifest,
+  renderLicences,
 } from "../src/licences.js";
 
 const leftPadManifest: PackageManifest = {
@@ -74,14 +74,8 @@ describe("collectPackages", () => {
 
 describe("renderLicences", () => {
   const packages = new Map<string, OwnedPackage>([
-    [
-      "left-pad@1.0.0",
-      { dir: "/repo/node_modules/left-pad", pkg: leftPadManifest },
-    ],
-    [
-      "cfonts@3.3.1",
-      { dir: "/repo/node_modules/cfonts", pkg: cfontsManifest },
-    ],
+    ["left-pad@1.0.0", { dir: "/repo/node_modules/left-pad", pkg: leftPadManifest }],
+    ["cfonts@3.3.1", { dir: "/repo/node_modules/cfonts", pkg: cfontsManifest }],
   ]);
   const text = async () => "FULL GPL TEXT";
 

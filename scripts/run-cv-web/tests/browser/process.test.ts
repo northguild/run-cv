@@ -1,8 +1,8 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import {
+  attachTerminal,
   InputBridge,
   OutputBridge,
-  attachTerminal,
   onExit,
   process,
   resetForTests,

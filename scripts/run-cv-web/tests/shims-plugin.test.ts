@@ -1,7 +1,6 @@
 import { mkdir, mkdtemp, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import path from "node:path";
-import { beforeEach, describe, expect, it, vi } from "vitest";
 import type {
   OnLoadArgs,
   OnLoadResult,
@@ -9,15 +8,16 @@ import type {
   OnResolveResult,
   PluginBuild,
 } from "esbuild";
+import { beforeEach, describe, expect, it, vi } from "vitest";
+import { DEFAULT_PROMPT, DEFAULT_TERMINAL } from "../src/config.js";
 import {
-  PROGRAM_ALIAS,
-  VIRTUAL_CONFIG,
-  VIRTUAL_FILES,
   createShimsPlugin,
+  PROGRAM_ALIAS,
   programEntryFilter,
   sourceDirFilter,
+  VIRTUAL_CONFIG,
+  VIRTUAL_FILES,
 } from "../src/shims-plugin.js";
-import { DEFAULT_PROMPT, DEFAULT_TERMINAL } from "../src/config.js";
 
 type ResolveHandler = (
   args: OnResolveArgs,

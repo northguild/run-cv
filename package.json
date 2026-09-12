@@ -24,6 +24,7 @@
     "test": "vitest run",
     "format": "biome format --write",
     "lint": "biome lint",
+    "check": "biome check",
     "lint:fix": "biome lint --write",
     "biome:all": "biome format --write && biome lint --write",
     "gen:pdf": "tsx scripts/pdf-gen/generate.ts",

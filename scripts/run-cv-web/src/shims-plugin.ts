@@ -6,8 +6,8 @@
 import { readFile } from "node:fs/promises";
 import path from "node:path";
 import type { Plugin, PluginBuild } from "esbuild";
-import type { HumanFiles } from "./human-files.js";
 import type { BrowserConfig } from "./config.js";
+import type { HumanFiles } from "./human-files.js";
 
 export interface ShimsPluginOptions {
   /** Absolute path to a shim file, by name. */

@@ -1,5 +1,5 @@
-import { describe, expect, it } from "vitest";
 import type { Metafile } from "esbuild";
+import { describe, expect, it } from "vitest";
 import { formatBuildSummary } from "../src/log.js";
 
 const metafile = {

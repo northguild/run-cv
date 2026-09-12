@@ -1,12 +1,12 @@
 import { transform } from "esbuild";
 import { describe, expect, it } from "vitest";
 import {
-  STUBBED_BUILTINS,
-  STUBBED_PACKAGES,
   createBuiltinFilter,
   createBuiltins,
   createStubFilter,
   createStubs,
+  STUBBED_BUILTINS,
+  STUBBED_PACKAGES,
 } from "../src/module-map.js";
 
 const shim = (name: string) => `/shims/${name}`;

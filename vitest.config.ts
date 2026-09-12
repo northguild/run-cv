@@ -2,7 +2,9 @@ import { fileURLToPath } from "node:url";
 import { defineConfig } from "vitest/config";
 
 const fixture = (name: string) =>
-  fileURLToPath(new URL(`./scripts/run-cv-web/tests/fixtures/${name}`, import.meta.url));
+  fileURLToPath(
+    new URL(`./scripts/run-cv-web/tests/fixtures/${name}`, import.meta.url),
+  );
 
 /**
  * The browser shims import modules that only exist inside the esbuild bundle.

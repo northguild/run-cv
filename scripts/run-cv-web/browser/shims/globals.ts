@@ -1,6 +1,7 @@
 // Injected into every bundled module so bare Node globals resolve.
-export { process } from "./process.js";
+
 export { Buffer } from "buffer/";
+export { process } from "./process.js";
 
 // Ink schedules its final unmount with setImmediate, which browsers lack.
 export const setImmediate = (callback: (...args: unknown[]) => void, ...args: unknown[]): number =>

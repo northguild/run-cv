@@ -1,7 +1,7 @@
 /** @vitest-environment node */
 import { describe, expect, it } from "vitest";
-import { pickFontSize } from "../../browser/terminal-sizing.js";
 import type { DimensionProposer, SizableTerminal } from "../../browser/terminal-sizing.js";
+import { pickFontSize } from "../../browser/terminal-sizing.js";
 
 const BOUNDS = { maxFont: 14, minFont: 6, needColumns: 81, needRows: 47 };
 

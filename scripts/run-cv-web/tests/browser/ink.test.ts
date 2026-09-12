@@ -1,7 +1,6 @@
-import { describe, expect, it, vi } from "vitest";
-
 import { render as inkRender } from "ink";
-import { Text, render } from "../../browser/shims/ink.js";
+import { describe, expect, it, vi } from "vitest";
+import { render, Text } from "../../browser/shims/ink.js";
 import { process, resetForTests } from "../../browser/shims/process.js";
 
 const waitUntilExit = vi.fn();

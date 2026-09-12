@@ -32,8 +32,11 @@ jobs:
           pnpm -v
           pnpm list --depth=0
 
+      # `biome check`, not `biome lint`: it also gates formatting and import
+      # order, which is what `build:ci` enforces further down. Running it here
+      # means a formatting break fails fast, under a step named for it.
       - name: Lint
-        run: pnpm run lint
+        run: pnpm run check
 
       - name: Typecheck
         run: pnpm run typecheck
