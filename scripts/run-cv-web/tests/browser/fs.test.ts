@@ -6,8 +6,8 @@ const OPTIONS = { pdfDir: PDF_DIR, downloadsDir: "/home/visitor/Downloads" };
 
 describe("isPackagedPdf", () => {
   it("matches PDFs inside the packaged directory, case-insensitively", () => {
-    expect(isPackagedPdf(`${PDF_DIR}/craig-cv.pdf`, PDF_DIR)).toBe(true);
-    expect(isPackagedPdf(`${PDF_DIR}/CRAIG-CV.PDF`, PDF_DIR)).toBe(true);
+    expect(isPackagedPdf(`${PDF_DIR}/baldur-cv.pdf`, PDF_DIR)).toBe(true);
+    expect(isPackagedPdf(`${PDF_DIR}/BALDUR-CV.PDF`, PDF_DIR)).toBe(true);
   });
 
   it("does not match non-PDFs in that directory", () => {
@@ -15,8 +15,46 @@ describe("isPackagedPdf", () => {
   });
 
   it("does not match PDFs elsewhere — a real download must still behave normally", () => {
-    expect(isPackagedPdf("/home/visitor/Downloads/craig-cv.pdf", PDF_DIR)).toBe(false);
-    expect(isPackagedPdf(`${PDF_DIR}-other/craig-cv.pdf`, PDF_DIR)).toBe(false);
+    expect(isPackagedPdf("/home/visitor/Downloads/baldur-cv.pdf", PDF_DIR)).toBe(false);
+    expect(isPackagedPdf(`${PDF_DIR}-other/baldur-cv.pdf`, PDF_DIR)).toBe(false);
+  });
+
+  it("matches only the known basenames when a list is given", () => {
+    const known = new Set(["craig-terminal-cv.pdf"]);
+    expect(isPackagedPdf(`${PDF_DIR}/craig-terminal-cv.pdf`, PDF_DIR, known)).toBe(true);
+    expect(isPackagedPdf(`${PDF_DIR}/CRAIG-TERMINAL-CV.PDF`, PDF_DIR, known)).toBe(true);
+    expect(isPackagedPdf(`${PDF_DIR}/nobody-cv.pdf`, PDF_DIR, known)).toBe(false);
+  });
+});
+
+// run-cv offers a static download (the HR/ATS CV) only if the file exists, so a
+// human whose payload doesn't serve one must see it reported as missing.
+describe("registerPdfs", () => {
+  it("narrows packaged PDFs to the ones the payload serves", () => {
+    const { fs: memfs, registerPdfs } = createRunCvFs({}, OPTIONS);
+    registerPdfs(["craig-terminal-cv.pdf", "craig-vintage-cv.pdf"]);
+    expect(memfs.existsSync(`${PDF_DIR}/craig-terminal-cv.pdf`)).toBe(true);
+    expect(memfs.existsSync(`${PDF_DIR}/nobody-cv.pdf`)).toBe(false);
+  });
+
+  it("keeps a static PDF the payload does serve", () => {
+    const { fs: memfs, registerPdfs } = createRunCvFs({}, OPTIONS);
+    registerPdfs(["baldur-cv.pdf", "baldur-terminal-cv.pdf"]);
+    expect(memfs.existsSync(`${PDF_DIR}/baldur-cv.pdf`)).toBe(true);
+  });
+
+  it("treats an empty list as no packaged PDFs, not as any PDF", () => {
+    const { fs: memfs, registerPdfs } = createRunCvFs({}, OPTIONS);
+    registerPdfs([]);
+    expect(memfs.existsSync(`${PDF_DIR}/baldur-cv.pdf`)).toBe(false);
+  });
+
+  it("still skips the copy for a registered PDF", () => {
+    const { fs: memfs, registerPdfs } = createRunCvFs({}, OPTIONS);
+    registerPdfs(["baldur-cv.pdf"]);
+    expect(() =>
+      memfs.copyFileSync(`${PDF_DIR}/baldur-cv.pdf`, "/home/visitor/Downloads/baldur-cv.pdf"),
+    ).not.toThrow();
   });
 });
 
@@ -68,16 +106,16 @@ describe("createRunCvFs", () => {
   // PDFs are not bundled into the page, so the check has to pass anyway.
   it("reports packaged PDFs as present without them existing", () => {
     const { fs: memfs } = createRunCvFs({}, OPTIONS);
-    expect(memfs.existsSync(`${PDF_DIR}/craig-cv.pdf`)).toBe(true);
+    expect(memfs.existsSync(`${PDF_DIR}/baldur-cv.pdf`)).toBe(true);
     expect(memfs.existsSync(`${PDF_DIR}/missing.txt`)).toBe(false);
   });
 
   it("skips the copy of a packaged PDF instead of failing on the missing source", () => {
     const { fs: memfs } = createRunCvFs({}, OPTIONS);
     expect(() =>
-      memfs.copyFileSync(`${PDF_DIR}/craig-cv.pdf`, "/home/visitor/Downloads/craig-cv.pdf"),
+      memfs.copyFileSync(`${PDF_DIR}/baldur-cv.pdf`, "/home/visitor/Downloads/baldur-cv.pdf"),
     ).not.toThrow();
-    expect(memfs.existsSync("/home/visitor/Downloads/craig-cv.pdf")).toBe(false);
+    expect(memfs.existsSync("/home/visitor/Downloads/baldur-cv.pdf")).toBe(false);
   });
 
   it("still copies ordinary files", () => {
@@ -101,6 +139,6 @@ describe("the default instance", () => {
   });
 
   it("re-exports the patched functions, not the originals", () => {
-    expect(fs.existsSync(`${PDF_DIR}/craig-cv.pdf`)).toBe(true);
+    expect(fs.existsSync(`${PDF_DIR}/craig-terminal-cv.pdf`)).toBe(true);
   });
 });

@@ -103,29 +103,33 @@ without excessive gaps.
 
 ## NPM Publishing & Versioning Guide
 
-We use **Semantic Versioning (SemVer)** to manage releases. Instead of manually editing `package.json`, use the following automated workflow to ensure the repository tags and the NPM registry remain perfectly in sync.
+We use **Semantic Versioning (SemVer)** to manage releases. Instead of manually editing `package.json`, use the following workflow to keep the repository tags, GitHub Releases, and the npm registry in sync.
 
-### 1. Semantic Versioning Commands
+### 1. Bump the version
 
-Decide which part of the version number ($X.Y.Z$) to increment based on your changes:
+Start from a clean, up-to-date `main` (`git pull`, `git status`). Decide which part of the version number ($X.Y.Z$) to increment:
 
 | Command             | Result              | Use Case                                                              |
 | :------------------ | :------------------ | :-------------------------------------------------------------------- |
-| `pnpm version patch` | `0.0.x` → `0.0.x+1` | Bug fixes, style tweaks, or minor text updates.                       |
-| `pnpm version minor` | `0.x.0` → `0.x+1.0` | New features (e.g., a new PDF theme) that are backward-compatible.    |
-| `pnpm version major` | `x.0.0` → `x+1.0.0` | Breaking changes (e.g., changing the data tape structure or CLI API). |
+| `npm version patch` | `0.0.x` → `0.0.x+1` | Bug fixes, style tweaks, or minor text updates.                       |
+| `npm version minor` | `0.x.0` → `0.x+1.0` | New features (e.g., a new PDF theme) that are backward-compatible.    |
+| `npm version major` | `x.0.0` → `x+1.0.0` | Breaking changes (e.g., changing the data tape structure or CLI API). |
 
-> **Note:** These commands automatically update `package.json` and `pnpm-lock.yaml`, create a git commit, and generate a git tag.
+> **Note:** These commands update `package.json`, create a git commit, and create an annotated git tag (`vX.Y.Z`). Use `npm version`, not `pnpm version` — pnpm rejects the `-m` flag. `%s` in the message is replaced with the new version.
 
 Example:
 
 ```bash
-pnpm version patch -m "Release v%s: Fixed header spacing and updated blah theme"
+npm version patch -m "Release v%s: Fixed header spacing and updated blah theme"
 ```
 
 ### 2. Sync to GitHub (with tags)
 
+```bash
 git push origin main --follow-tags
+```
+
+> `--follow-tags` only pushes **annotated** tags. If a tag was created by hand with `git tag vX.Y.Z` (lightweight), push it explicitly: `git push origin vX.Y.Z`. Verify with `git ls-remote --tags origin`.
 
 ### 3. Publish to npm
 
@@ -134,14 +138,10 @@ pnpm login
 pnpm publish
 ```
 
-### 5. Finalize GitHub Release
+### 4. Create the GitHub Release
 
-Go to the Releases tab on GitHub.
+```bash
+gh release create vX.Y.Z --verify-tag --title vX.Y.Z --generate-notes --latest
+```
 
-Click Draft a new release.
-
-Select the Tag you just pushed (e.g., v0.0.6).
-
-Click Generate release notes to automatically pull in your commit history.
-
-Click Publish release
+Or in the browser: Releases → Draft a new release → select the pushed tag → Generate release notes → Publish release.

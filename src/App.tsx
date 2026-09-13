@@ -19,6 +19,7 @@ import { theme } from "./styles/theme";
 import type { HighlightedItem, HumanManifest, Page } from "./types";
 import { executeMenuAction } from "./utils/menu-action-executor";
 import {
+  filterAvailableMenuItems,
   findMenuItemByValue,
   findMenuItemIndexByValue,
   getMenuSelectItems,
@@ -63,6 +64,20 @@ function getPdfRoot() {
 
 const PDF_ROOT = getPdfRoot();
 
+function pdfExists(filename: string): boolean {
+  return fs.existsSync(path.join(PDF_ROOT, filename));
+}
+
+/** Hides static-PDF menu entries whose file isn't packaged for this human. */
+function withAvailablePdfs<T extends Page>(page: T): T {
+  if (!page.menu) return page;
+  return { ...page, menu: filterAvailableMenuItems(page.menu, pdfExists) };
+}
+
+async function loadAvailablePage(baseDir: string, file: string): Promise<Page> {
+  return withAvailablePdfs(await getPage(baseDir, file));
+}
+
 export function App({ name }: AppProps) {
   const { exit } = useApp();
   const [human, setHuman] = useState<HumanManifest | null>(null);
@@ -96,7 +111,7 @@ export function App({ name }: AppProps) {
       }
 
       try {
-        const data = await getHuman(name);
+        const data = withAvailablePdfs(await getHuman(name));
         setHuman(data);
         setHistory([data]);
       } catch {
@@ -189,7 +204,7 @@ export function App({ name }: AppProps) {
       action,
       currentDir: currentPage.dir,
       pdfRoot: PDF_ROOT,
-      loadPage: getPage,
+      loadPage: loadAvailablePage,
       onNavigate: (nextPage) => setHistory((prev) => [...prev, nextPage]),
       onError: (message) => setError(message),
     });

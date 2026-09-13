@@ -25,7 +25,10 @@ describe("copyStaticPdfs", () => {
     const writes: string[] = [];
 
     fs.mkdirSync(publicDir, { recursive: true });
-    fs.writeFileSync(path.join(publicDir, "craig-cv.pdf"), "CRAIG PDF");
+    fs.writeFileSync(
+      path.join(publicDir, "craig-terminal-cv.pdf"),
+      "CRAIG PDF",
+    );
     fs.writeFileSync(path.join(publicDir, "baldur-cv.pdf"), "BALDUR PDF");
     fs.writeFileSync(path.join(publicDir, "notes.txt"), "ignore me");
 
@@ -40,10 +43,14 @@ describe("copyStaticPdfs", () => {
       },
     });
 
-    expect(result.copiedFiles).toEqual(["baldur-cv.pdf", "craig-cv.pdf"]);
-    expect(fs.readFileSync(path.join(distPdfDir, "craig-cv.pdf"), "utf8")).toBe(
-      "CRAIG PDF",
-    );
+    expect(result.copiedFiles.sort()).toEqual([
+      "baldur-cv.pdf",
+      "craig-terminal-cv.pdf",
+    ]);
+    expect(result.removedFiles).toEqual([]);
+    expect(
+      fs.readFileSync(path.join(distPdfDir, "craig-terminal-cv.pdf"), "utf8"),
+    ).toBe("CRAIG PDF");
     expect(
       fs.readFileSync(path.join(distPdfDir, "baldur-cv.pdf"), "utf8"),
     ).toBe("BALDUR PDF");
@@ -51,6 +58,37 @@ describe("copyStaticPdfs", () => {
     expect(writes).toEqual([
       `Copied 2 static PDF file(s) to ${path.resolve(distPdfDir)}\n`,
     ]);
+  });
+
+  // run-cv shows a static download only when its file is packaged, so a CV
+  // deleted from public/ must not survive in dist/pdf/ from an earlier build.
+  it("removes PDFs from dist/pdf that are no longer in public", () => {
+    const publicDir = path.join(tempRoot, "public");
+    const distPdfDir = path.join(tempRoot, "dist", "pdf");
+    const writes: string[] = [];
+
+    fs.mkdirSync(publicDir, { recursive: true });
+    fs.mkdirSync(distPdfDir, { recursive: true });
+    fs.writeFileSync(path.join(publicDir, "baldur-cv.pdf"), "BALDUR PDF");
+    fs.writeFileSync(path.join(distPdfDir, "nobody-cv.pdf"), "STALE");
+    fs.writeFileSync(path.join(distPdfDir, "keep.txt"), "not a pdf");
+
+    const result = copyStaticPdfs({
+      publicDir,
+      distPdfDir,
+      stdout: {
+        write(chunk: string) {
+          writes.push(chunk);
+          return true;
+        },
+      },
+    });
+
+    expect(result.removedFiles).toEqual(["nobody-cv.pdf"]);
+    expect(fs.existsSync(path.join(distPdfDir, "nobody-cv.pdf"))).toBe(false);
+    expect(fs.existsSync(path.join(distPdfDir, "baldur-cv.pdf"))).toBe(true);
+    expect(fs.existsSync(path.join(distPdfDir, "keep.txt"))).toBe(true);
+    expect(writes).toContain("Removed 1 stale PDF file(s): nobody-cv.pdf\n");
   });
 
   it("throws when the public directory is missing", () => {

@@ -149,12 +149,17 @@ describe("anonymity", () => {
     for (const human of config.humans) {
       const hash = await hashHuman(human, config.hashSalt);
       const pdfs = await readdir(path.join(out, config.payloadDir, hash, "pdf"));
-      // The ATS CV plus one per theme in scripts/pdf-gen/styles/themes.
-      expect(pdfs.sort(), human).toEqual([
-        `${human}-cv.pdf`,
-        `${human}-terminal-cv.pdf`,
-        `${human}-vintage-cv.pdf`,
-      ]);
+      // One per theme in scripts/pdf-gen/styles/themes, plus the HR/ATS CV
+      // only for a human who has one in the PDF source directory.
+      const source = await readdir(path.join(REPO, config.pdfDir));
+      const ats = `${human}-cv.pdf`;
+      expect(pdfs.sort(), human).toEqual(
+        [
+          ...(source.includes(ats) ? [ats] : []),
+          `${human}-terminal-cv.pdf`,
+          `${human}-vintage-cv.pdf`,
+        ].sort(),
+      );
     }
   });
 });

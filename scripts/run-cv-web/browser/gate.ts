@@ -12,7 +12,7 @@
 import config from "virtual:run-cv-web-config";
 import { hashHuman } from "../shared/human-hash.js";
 import { focusTerminal } from "./setup.js";
-import { seed } from "./shims/fs.js";
+import { registerPdfs, seed } from "./shims/fs.js";
 import { setSession } from "./shims/session.js";
 
 interface Payload {
@@ -44,7 +44,13 @@ async function unlock(typed: string): Promise<void> {
   // takes its `if (!name)` branch and prints "Please provide a human name",
   // which is the wrong screen for someone who did provide one.
   setSession(found?.human ?? typed, pdfBase);
-  if (found) seed(found.files);
+  if (found) boot(found);
+}
+
+/** Seeds the human's markdown and limits the download menu to PDFs they serve. */
+function boot(found: Payload): void {
+  seed(found.files);
+  registerPdfs(found.pdfs);
 }
 
 /** Resolves once the program may be imported. */
@@ -61,7 +67,7 @@ export async function runGate(): Promise<void> {
       if (response.ok) {
         const found = (await response.json()) as Payload;
         setSession(found.human, pdfBase);
-        seed(found.files);
+        boot(found);
         start();
         return;
       }

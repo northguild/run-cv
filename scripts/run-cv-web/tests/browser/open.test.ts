@@ -1,14 +1,17 @@
 import { afterEach, describe, expect, it, vi } from "vitest";
 import open, { classifyTarget } from "../../browser/shims/open.js";
 
-const CV = "/craig-curtis-cv.pdf";
+const CV = "/site-cv.pdf";
 
 afterEach(() => vi.restoreAllMocks());
 
 describe("classifyTarget", () => {
   it("sends any PDF to the site's own CV rather than the packaged one", () => {
-    expect(classifyTarget("/run-cv/dist/pdf/craig-cv.pdf")).toEqual({ kind: "pdf", url: CV });
-    expect(classifyTarget("/home/visitor/Downloads/CRAIG-CV.PDF")).toEqual({
+    expect(classifyTarget("/run-cv/dist/pdf/craig-terminal-cv.pdf")).toEqual({
+      kind: "pdf",
+      url: CV,
+    });
+    expect(classifyTarget("/home/visitor/Downloads/CRAIG-TERMINAL-CV.PDF")).toEqual({
       kind: "pdf",
       url: CV,
     });
@@ -64,7 +67,7 @@ describe("open", () => {
 
   it("redirects PDFs to the configured CV", async () => {
     const windowOpen = vi.spyOn(window, "open").mockReturnValue(null);
-    await open("/run-cv/dist/pdf/craig-cv.pdf");
+    await open("/run-cv/dist/pdf/craig-terminal-cv.pdf");
     expect(windowOpen).toHaveBeenCalledWith(CV, "_blank", "noopener,noreferrer");
   });
 

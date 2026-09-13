@@ -35,7 +35,7 @@ export default defineRunCvWeb({
   outDir: "docs/run-cv",
   basePath: "/run-cv/run-cv/",
   virtualDist: "/run-cv/dist",
-  cvUrl: "/run-cv/run-cv/craig-cv.pdf",
+  cvUrl: "/run-cv/run-cv/baldur-cv.pdf",
 });
 ```
 
