@@ -10,8 +10,10 @@ vi.mock("../../browser/setup.js", () => ({
 }));
 
 const seed = vi.fn();
+const registerPdfs = vi.fn();
 vi.mock("../../browser/shims/fs.js", () => ({
   seed: (files: unknown) => seed(files),
+  registerPdfs: (files: unknown) => registerPdfs(files),
 }));
 
 const setSession = vi.fn();
@@ -25,7 +27,7 @@ const SALT = config.hashSalt;
 const PAYLOAD = {
   human: "craig",
   files: { "/run-cv/dist/humans/craig/introduction.md": "# HI" },
-  pdfs: [],
+  pdfs: ["craig-terminal-cv.pdf", "craig-vintage-cv.pdf"],
 };
 
 function renderGate(): HTMLInputElement {
@@ -85,6 +87,18 @@ describe("runGate", () => {
     expect(document.body.dataset.state).toBe("running");
   });
 
+  // run-cv hides a static download (the HR/ATS CV) whose PDF isn't packaged,
+  // so the filesystem has to know exactly which PDFs this payload serves.
+  it("registers the payload's PDFs so missing downloads stay hidden", async () => {
+    serveOnly("craig");
+    const input = renderGate();
+    const running = runGate();
+    submit(input, "craig");
+    await running;
+
+    expect(registerPdfs).toHaveBeenCalledWith(PAYLOAD.pdfs);
+  });
+
   // The wrong-name path. run-cv renders its own ACCESS DENIED from an empty
   // filesystem, which is why nothing is seeded and the boot still happens.
   it("boots with nothing seeded when the name is unknown", async () => {
@@ -95,6 +109,7 @@ describe("runGate", () => {
     await running;
 
     expect(seed).not.toHaveBeenCalled();
+    expect(registerPdfs).not.toHaveBeenCalled();
     expect(document.body.dataset.state).toBe("running");
   });
 
@@ -158,6 +173,7 @@ describe("runGate", () => {
 
       await runGate();
       expect(seed).toHaveBeenCalledWith(PAYLOAD.files);
+      expect(registerPdfs).toHaveBeenCalledWith(PAYLOAD.pdfs);
       expect(setSession).toHaveBeenCalledWith("craig", `${config.payloadBase}${hash}/pdf/`);
     });
 

@@ -3,7 +3,7 @@ import { DEFAULT_PROMPT, DEFAULT_TERMINAL } from "../../src/config.js";
 
 /** Stands in for `virtual:run-cv-web-config` under test. */
 const config: BrowserConfig = {
-  cvUrl: "/craig-curtis-cv.pdf",
+  cvUrl: "/site-cv.pdf",
   homedir: "/home/visitor",
   virtualDist: "/run-cv/dist",
   humans: ["craig"],

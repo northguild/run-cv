@@ -82,20 +82,38 @@ describe("menu action executor", () => {
     const tempRoot = fs.mkdtempSync(path.join(os.tmpdir(), "menu-exec-"));
     const pdfRoot = path.join(tempRoot, "dist", "pdf");
     fs.mkdirSync(pdfRoot, { recursive: true });
-    fs.writeFileSync(path.join(pdfRoot, "craig-cv.pdf"), "PDF");
+    fs.writeFileSync(path.join(pdfRoot, "baldur-cv.pdf"), "PDF");
 
     const copySpy = vi.spyOn(fs, "copyFileSync").mockImplementation(() => {});
 
     const { errors } = await runExecutor(
       {
         type: "download-pdf",
-        filename: "craig-cv.pdf",
+        filename: "baldur-cv.pdf",
       },
       { pdfRoot },
     );
 
     expect(errors).toEqual([]);
     expect(copySpy).toHaveBeenCalledTimes(1);
+
+    copySpy.mockRestore();
+    fs.rmSync(tempRoot, { recursive: true, force: true });
+  });
+
+  it("reports a PDF that is not packaged instead of copying", async () => {
+    const tempRoot = fs.mkdtempSync(path.join(os.tmpdir(), "menu-exec-"));
+    const copySpy = vi.spyOn(fs, "copyFileSync").mockImplementation(() => {});
+
+    const { errors } = await runExecutor(
+      { type: "download-pdf", filename: "nobody-cv.pdf" },
+      { pdfRoot: tempRoot },
+    );
+
+    expect(errors).toEqual([
+      "ARCHIVE ERROR: Resource nobody-cv.pdf not found in package.",
+    ]);
+    expect(copySpy).not.toHaveBeenCalled();
 
     copySpy.mockRestore();
     fs.rmSync(tempRoot, { recursive: true, force: true });

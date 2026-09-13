@@ -13,13 +13,13 @@ describe("planPayloads", () => {
   it("pairs each human with the hash their payload is served from", async () => {
     const plans = await planPayloads(
       new Map([["craig", files("craig")]]),
-      new Map([["craig", ["craig-cv.pdf"]]]),
+      new Map([["craig", ["craig-terminal-cv.pdf"]]]),
       SALT,
     );
     expect(plans).toHaveLength(1);
     expect(plans[0]?.hash).toBe(await hashHuman("craig", SALT));
     expect(plans[0]?.human).toBe("craig");
-    expect(plans[0]?.pdfs).toEqual(["craig-cv.pdf"]);
+    expect(plans[0]?.pdfs).toEqual(["craig-terminal-cv.pdf"]);
   });
 
   it("keeps each human's files to themselves", async () => {
@@ -58,29 +58,37 @@ describe("planPayloads", () => {
 });
 
 describe("pdfsFor", () => {
+  // Baldur has an HR/ATS CV; Craig has only the themed ones.
   const available = [
-    "craig-cv.pdf",
     "craig-terminal-cv.pdf",
     "craig-vintage-cv.pdf",
     "baldur-cv.pdf",
+    "baldur-terminal-cv.pdf",
+    "baldur-vintage-cv.pdf",
     "notes.txt",
   ];
 
   it("picks every PDF run-cv's download menu can ask a human for", () => {
     // menu-actions builds `${human}-${theme}-cv.pdf`, plus the named ATS file.
-    expect(pdfsFor("craig", available)).toEqual([
-      "craig-cv.pdf",
-      "craig-terminal-cv.pdf",
-      "craig-vintage-cv.pdf",
+    expect(pdfsFor("baldur", available)).toEqual([
+      "baldur-cv.pdf",
+      "baldur-terminal-cv.pdf",
+      "baldur-vintage-cv.pdf",
     ]);
   });
 
+  // The payload's list is what the browser uses to hide the ATS download, so a
+  // human without that file must not be given one.
+  it("leaves out an ATS CV the human doesn't have", () => {
+    expect(pdfsFor("craig", available)).toEqual(["craig-terminal-cv.pdf", "craig-vintage-cv.pdf"]);
+  });
+
   it("never hands one human another's PDFs", () => {
-    expect(pdfsFor("baldur", available)).toEqual(["baldur-cv.pdf"]);
+    expect(pdfsFor("craig", available).some((file) => file.startsWith("baldur"))).toBe(false);
   });
 
   it("matches the prefix case-insensitively, as run-cv lowercases the name", () => {
-    expect(pdfsFor("CRAIG", ["craig-cv.pdf"])).toEqual(["craig-cv.pdf"]);
+    expect(pdfsFor("CRAIG", ["craig-terminal-cv.pdf"])).toEqual(["craig-terminal-cv.pdf"]);
   });
 
   it("does not match a human whose name is a prefix of another", () => {

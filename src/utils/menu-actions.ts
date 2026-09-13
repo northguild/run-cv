@@ -15,6 +15,22 @@ export function getMenuItemValue(item: MenuItem): string | undefined {
   return item.file ?? item.theme ?? item.url ?? item.link;
 }
 
+function isStaticPdfItem(item: MenuItem): item is MenuItem & { file: string } {
+  return !!item.file?.toLowerCase().endsWith(".pdf");
+}
+
+/**
+ * Drops static-PDF entries (e.g. an HR/ATS CV) whose file isn't packaged, so a
+ * human without one never sees a download that can only fail. Themed PDFs are
+ * generated for every human and are left alone.
+ */
+export function filterAvailableMenuItems(
+  menu: MenuItem[],
+  pdfExists: (filename: string) => boolean,
+): MenuItem[] {
+  return menu.filter((item) => !isStaticPdfItem(item) || pdfExists(item.file));
+}
+
 export function getMenuSelectItems(menu: MenuItem[]): MenuSelectItem[] {
   return menu
     .map((item) => {
@@ -68,7 +84,7 @@ export function resolveMenuAction(
     };
   }
 
-  if (menuItem.file?.toLowerCase().endsWith(".pdf")) {
+  if (isStaticPdfItem(menuItem)) {
     return {
       type: "download-pdf",
       filename: menuItem.file,
